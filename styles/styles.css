@@ -2782,9 +2782,17 @@ body.red-theme main .section.whc-banner .hero h1,
 body.red-theme main .section.whc-banner .hero h2 {
   color: #fff;
 }
-/* strengthen legibility over the photo */
+/* darken + cool the banner photo for a more institutional (navy) mood and
+   stronger white-text contrast — filter avoids any z-index/overlay risk */
+body.red-theme main .section.whc-banner .hero picture img {
+  filter: brightness(0.62) saturate(0.9);
+}
 body.red-theme main .section.whc-banner .hero > div:last-child {
-  text-shadow: 0 1px 12px rgba(0, 18, 60, .45);
+  text-shadow: 0 1px 14px rgba(0, 18, 60, .55);
+}
+/* maroon accent underline under the banner title (TJMG signature) */
+body.red-theme main .section.whc-banner .hero h1::after {
+  background-color: var(--brand-maroon);
 }
 
 /* ---- Header --------------------------------------------------------------- */
