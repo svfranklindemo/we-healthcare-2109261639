@@ -815,6 +815,70 @@
     ]
   },
   {
+    "id": "atalho",
+    "fields": [
+      {
+        "component": "select",
+        "name": "icon",
+        "label": "Ícone",
+        "options": [
+          {
+            "name": "Processo / eproc",
+            "value": "processo"
+          },
+          {
+            "name": "Certidão",
+            "value": "certidao"
+          },
+          {
+            "name": "Custas / Financeiro",
+            "value": "custas"
+          },
+          {
+            "name": "Serviços",
+            "value": "servicos"
+          },
+          {
+            "name": "Concursos",
+            "value": "concursos"
+          },
+          {
+            "name": "Execução Penal (balança)",
+            "value": "balanca"
+          },
+          {
+            "name": "Precatórios",
+            "value": "precatorios"
+          },
+          {
+            "name": "Balcão Virtual",
+            "value": "balcao"
+          },
+          {
+            "name": "Telefones / Endereços",
+            "value": "telefone"
+          },
+          {
+            "name": "Documento",
+            "value": "documento"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Texto",
+        "value": "",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
     "id": "columns",
     "fields": [
       {
@@ -1202,7 +1266,7 @@
       }
     ]
   },
-    {
+  {
     "id": "bodea-secure-antivirus",
     "fields": [
       {
@@ -2527,8 +2591,8 @@
             "name": "Bodea",
             "value": "bodea"
           },
-          { 
-            "name": "Exp News", 
+          {
+            "name": "Exp News",
             "value": "expnews"
           }
         ]
@@ -2547,8 +2611,14 @@
         "value": "single",
         "valueType": "string",
         "options": [
-          { "name": "Default Form (Single-Page)", "value": "single" },
-          { "name": "Wizard (Multi-Step)", "value": "wizard" }
+          {
+            "name": "Default Form (Single-Page)",
+            "value": "single"
+          },
+          {
+            "name": "Wizard (Multi-Step)",
+            "value": "wizard"
+          }
         ],
         "description": "Choose between the default single page form or a multi-step wizard experience."
       },
@@ -6059,11 +6129,11 @@
               },
               {
                 "name": "$1,234.21",
-                "value": "\u00a4#,##0.00"
+                "value": "¤#,##0.00"
               },
               {
                 "name": "$1234.21",
-                "value": "\u00a4####0.00"
+                "value": "¤####0.00"
               },
               {
                 "name": "1,234.210",
@@ -9131,7 +9201,9 @@
         "description": "Heading displayed above the carousel (e.g. 'Choose your car'). Only used in Carousel variant.",
         "condition": {
           "==": [
-            { "var": "style" },
+            {
+              "var": "style"
+            },
             "carousel"
           ]
         }
@@ -9145,7 +9217,9 @@
         "description": "Text for the Learn more button in the Carousel variant.",
         "condition": {
           "==": [
-            { "var": "style" },
+            {
+              "var": "style"
+            },
             "carousel"
           ]
         }
@@ -9608,9 +9682,18 @@
         "valueType": "string",
         "value": "3",
         "options": [
-          { "name": "3", "value": "3" },
-          { "name": "4", "value": "4" },
-          { "name": "5", "value": "5" }
+          {
+            "name": "3",
+            "value": "3"
+          },
+          {
+            "name": "4",
+            "value": "4"
+          },
+          {
+            "name": "5",
+            "value": "5"
+          }
         ]
       },
       {

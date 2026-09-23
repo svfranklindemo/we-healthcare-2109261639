@@ -1,0 +1,88 @@
+/* Atalhos / quick-links strip — TJMG signature service shortcuts */
+
+.atalhos.block {
+  --atalhos-maroon: var(--brand-maroon, #7e1819);
+  --atalhos-navy: var(--brand-navy, #00123c);
+  --atalhos-line: var(--brand-line, #e0e0e0);
+  --atalhos-bg-light: var(--brand-bg-light, #f5f6f8);
+  --atalhos-ink: var(--text-color, #2d3345);
+}
+
+.atalhos .atalhos-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4px 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.atalhos .atalho {
+  flex: 1 0 auto;
+  min-width: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  text-align: center;
+  padding: 10px 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--atalhos-ink);
+  transition: background-color .18s ease;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.atalhos .atalho:hover {
+  background: var(--atalhos-bg-light);
+  text-decoration: none;
+}
+
+/* neutralize the global font-awesome arrow appended after links */
+.atalhos .atalho::after {
+  content: none;
+}
+
+.atalhos .atalho-ic {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--atalhos-bg-light);
+  border: 1px solid var(--atalhos-line);
+  color: var(--atalhos-navy);
+  display: grid;
+  place-items: center;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.atalhos .atalho:hover .atalho-ic {
+  background: var(--atalhos-maroon);
+  border-color: var(--atalhos-maroon);
+  color: #fff;
+}
+
+.atalhos .atalho-ic svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.atalhos .atalho-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--atalhos-ink);
+}
+
+@media (width >= 900px) {
+  .atalhos .atalhos-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+  }
+}

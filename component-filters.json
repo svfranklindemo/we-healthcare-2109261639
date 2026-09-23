@@ -12,6 +12,7 @@
       "action-button",
       "button",
       "cards",
+      "atalhos",
       "carousel",
       "columns",
       "contentfragment",
@@ -86,6 +87,12 @@
     ]
   },
   {
+    "id": "atalhos",
+    "components": [
+      "atalho"
+    ]
+  },
+  {
     "id": "carousel",
     "components": [
       "card"
@@ -114,7 +121,7 @@
       "tabs-item"
     ]
   },
-    {
+  {
     "id": "bodea-secure-antivirus",
     "components": []
   },

@@ -359,8 +359,26 @@ ul {
 }
 
 body.red-theme {
+  /* TJMG brand palette */
+  --brand-maroon: #7e1819;
+  --brand-maroon-dark: #611213;
+  --brand-navy: #00123c;
+  --brand-navy-2: #002e50;
+  --brand-slate: #576180;
+  --brand-line: #e0e0e0;
+  --brand-bg-light: #f5f6f8;
+
   --main-accent-color: #7e1819;
-  --link-hover-color: #EF4444;
+  --link-color: #00123c;
+  --link-hover-color: #7e1819;
+  --text-color: #2d3345;
+
+  /* TJMG uses Open Sans site-wide */
+  --body-font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  --heading-font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  --light-font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  --extra-font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+  --black-font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
 }
 
 body.blue-theme {
@@ -2610,4 +2628,183 @@ padding-left: 0 !important;
 
 .rss-details.block[data-block-status="loaded"] {
   min-height: 0;
+}
+
+/* ==========================================================================
+   TJMG THEME — layered additively on .red-theme (Tribunal de Justiça de MG)
+   Palette: maroon #7e1819 · navy #00123c · slate #576180 · line #e0e0e0
+   Everything scoped to body.red-theme so other demos are untouched.
+   ========================================================================== */
+
+/* Heading weight bump for the Open Sans look */
+body.red-theme h1,
+body.red-theme h2,
+body.red-theme h3 {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Section titles (NOTÍCIAS, COMUNICADOS E INFORMES ...) ---------------- */
+body.red-theme main .section > .default-content-wrapper > h1:first-child,
+body.red-theme main .section > .default-content-wrapper > h2:first-child,
+body.red-theme main .section > .default-content-wrapper > h3:first-child {
+  color: var(--brand-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  position: relative;
+  padding-left: 20px;
+}
+body.red-theme main .section > .default-content-wrapper > h1:first-child::before,
+body.red-theme main .section > .default-content-wrapper > h2:first-child::before,
+body.red-theme main .section > .default-content-wrapper > h3:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.95em;
+  bottom: 0.3em;
+  width: 6px;
+  background: var(--brand-maroon);
+  border-radius: 3px;
+}
+/* lead paragraph under a section title */
+body.red-theme main .section > .default-content-wrapper > p {
+  color: var(--brand-slate);
+}
+
+/* ---- Atalhos section wrapper (quick-links strip below the header) -------- */
+body.red-theme main .section.tjmg-atalhos {
+  margin: 0;
+  padding: 14px 16px 10px;
+  background: #fff;
+  border-bottom: 1px solid var(--brand-line);
+}
+body.red-theme main .section.tjmg-atalhos > .atalhos-wrapper {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* ---- Buttons -------------------------------------------------------------- */
+body.red-theme .button-container a.button,
+body.red-theme a.button:any-link {
+  background-color: var(--brand-maroon);
+  color: #fff;
+  border: 2px solid var(--brand-maroon);
+  border-radius: 6px;
+  padding: 11px 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: none;
+  text-overflow: clip;
+  white-space: normal;
+  transition: background-color .18s, border-color .18s, transform .18s;
+}
+body.red-theme .button-container a.button:hover,
+body.red-theme a.button:any-link:hover {
+  background-color: var(--brand-maroon-dark);
+  border-color: var(--brand-maroon-dark);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+/* remove the default font-awesome arrow after buttons */
+body.red-theme .button-container a.button::after,
+body.red-theme a.button::after {
+  content: none;
+}
+/* secondary / outline button */
+body.red-theme a.button.secondary:any-link,
+body.red-theme .cta-button-secondary a.button {
+  background-color: #fff;
+  color: var(--brand-navy);
+  border: 2px solid var(--brand-navy);
+}
+body.red-theme a.button.secondary:any-link:hover,
+body.red-theme .cta-button-secondary a.button:hover {
+  background-color: var(--brand-navy);
+  color: #fff;
+}
+
+/* ---- Cards (news, comunicados, service columns) -------------------------- */
+body.red-theme main .cards > ul > li {
+  background: #fff;
+  border: 1px solid var(--brand-line);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 18, 60, .05);
+  transition: box-shadow .18s ease, transform .18s ease;
+}
+body.red-theme main .cards > ul > li:hover {
+  box-shadow: 0 12px 30px rgba(0, 18, 60, .14);
+  transform: translateY(-3px);
+}
+body.red-theme main .cards .cards-card-body {
+  padding: 18px 20px 22px;
+}
+body.red-theme main .cards .cards-card-body h2,
+body.red-theme main .cards .cards-card-body h3,
+body.red-theme main .cards .cards-card-body h4 {
+  color: var(--brand-maroon);
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 700;
+  padding-top: 0.2em;
+}
+body.red-theme main .cards .cards-card-body p {
+  color: var(--brand-slate);
+  font-size: 14px;
+  line-height: 1.5;
+}
+/* keep card images flush to the rounded top edge */
+body.red-theme main .cards > ul > li .cards-card-image img {
+  border-radius: 0;
+}
+
+/* Comunicados-style cards: a date <p> as the first line, then a heading.
+   Give them the signature TJMG left maroon accent + maroon date. */
+body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) {
+  border-left: 4px solid var(--brand-maroon);
+}
+body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) .cards-card-body > p:first-child {
+  color: var(--brand-maroon);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  margin-top: 0;
+}
+body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) .cards-card-body h2,
+body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) .cards-card-body h3,
+body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) .cards-card-body h4 {
+  color: var(--brand-navy);
+}
+
+/* ---- Hero banner ---------------------------------------------------------- */
+body.red-theme main .section.whc-banner .hero h1,
+body.red-theme main .section.whc-banner .hero h2 {
+  color: #fff;
+}
+/* strengthen legibility over the photo */
+body.red-theme main .section.whc-banner .hero > div:last-child {
+  text-shadow: 0 1px 12px rgba(0, 18, 60, .45);
+}
+
+/* ---- Header --------------------------------------------------------------- */
+/* nav-wrapper is already maroon via red-theme; add a subtle navy underline
+   so the bar reads as the TJMG masthead */
+body.red-theme header .nav-wrapper {
+  border-bottom: 3px solid var(--brand-navy);
+}
+
+/* ---- Footer --------------------------------------------------------------- */
+/* TJMG footer is dark navy with a maroon accent strip on top */
+body.red-theme footer {
+  background-color: var(--brand-navy);
+  color: #fff;
+  border-top: 4px solid var(--brand-maroon);
+}
+body.red-theme footer a,
+body.red-theme footer a:any-link {
+  color: #c9d2e4;
+}
+body.red-theme footer a:hover {
+  color: #fff;
 }
