@@ -57,7 +57,10 @@ function addSocial(header) {
     a.innerHTML = svg;
     group.append(a);
   });
-  nav.append(group);
+  // place social BEFORE the tools (search / sign-in / language)
+  const tools = nav.querySelector('.nav-tools');
+  if (tools) nav.insertBefore(group, tools);
+  else nav.append(group);
 }
 
 function enhance() {
