@@ -2777,29 +2777,128 @@ body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) .card
   color: var(--brand-navy);
 }
 
-/* ---- Hero banner ---------------------------------------------------------- */
+/* ---- Hero banner (whc-banner) — mockup style: left-aligned + navy gradient.
+   Scoped to red-theme + whc-banner so other hero uses stay untouched.
+   .hero picture is position:absolute z-index:-1, so the ::before overlay sits
+   above the photo; content is lifted to z-index:1. */
+body.red-theme main .section.whc-banner .hero {
+  justify-content: flex-start;
+}
+body.red-theme main .section.whc-banner .hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(0, 18, 60, .86) 0%, rgba(0, 18, 60, .55) 45%, rgba(0, 18, 60, .12) 100%);
+  pointer-events: none;
+}
+body.red-theme main .section.whc-banner .hero > *:not(picture) {
+  position: relative;
+  z-index: 1;
+}
 body.red-theme main .section.whc-banner .hero h1,
-body.red-theme main .section.whc-banner .hero h2 {
+body.red-theme main .section.whc-banner .hero h2,
+body.red-theme main .section.whc-banner .hero h3,
+body.red-theme main .section.whc-banner .hero p {
   color: #fff;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
+  text-shadow: 0 1px 14px rgba(0, 18, 60, .5);
 }
-/* darken + cool the banner photo for a more institutional (navy) mood and
-   stronger white-text contrast — filter avoids any z-index/overlay risk */
-body.red-theme main .section.whc-banner .hero picture img {
-  filter: brightness(0.62) saturate(0.9);
-}
-body.red-theme main .section.whc-banner .hero > div:last-child {
-  text-shadow: 0 1px 14px rgba(0, 18, 60, .55);
-}
-/* maroon accent underline under the banner title (TJMG signature) */
+/* maroon accent underline under the banner title (TJMG signature), left-aligned */
 body.red-theme main .section.whc-banner .hero h1::after {
   background-color: var(--brand-maroon);
+  margin-left: 0;
 }
 
-/* ---- Header --------------------------------------------------------------- */
-/* nav-wrapper is already maroon via red-theme; add a subtle navy underline
-   so the bar reads as the TJMG masthead */
+/* ==========================================================================
+   TJMG HEADER — two static bars framing the existing (untouched) maroon nav:
+   bar 1 = utility strip (top), bar 3 = navy institutional nav (bottom).
+   Injected by scripts/tjmg-header.js. Header made static so the bars stack
+   with no fixed-overlap math. Scoped to red-theme.
+   ========================================================================== */
+body.red-theme header,
 body.red-theme header .nav-wrapper {
-  border-bottom: 3px solid var(--brand-navy);
+  position: static;
+}
+
+/* Bar 1 — utility strip */
+body.red-theme header .tjmg-utilbar {
+  background: var(--brand-maroon-dark);
+}
+body.red-theme header .tjmg-utilbar .tjmg-bar-inner {
+  max-width: 1264px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+}
+body.red-theme header .tjmg-utilbar a {
+  color: #f3d9d9;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+body.red-theme header .tjmg-utilbar a::after {
+  content: none;
+}
+body.red-theme header .tjmg-utilbar a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Bar 3 — navy institutional nav */
+body.red-theme header .tjmg-navybar {
+  background: var(--brand-navy);
+}
+body.red-theme header .tjmg-navybar .tjmg-bar-inner {
+  max-width: 1264px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+}
+body.red-theme header .tjmg-navybar a {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  border-left: 1px solid rgba(255, 255, 255, .08);
+  white-space: nowrap;
+}
+body.red-theme header .tjmg-navybar a:first-child {
+  border-left: 0;
+}
+body.red-theme header .tjmg-navybar a::after {
+  content: none;
+}
+body.red-theme header .tjmg-navybar a:hover {
+  background: var(--brand-navy-2);
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (width < 900px) {
+  body.red-theme header .tjmg-utilbar .tjmg-bar-inner {
+    justify-content: center;
+    gap: 12px;
+    padding: 0 12px;
+  }
+  body.red-theme header .tjmg-utilbar a {
+    font-size: 10.5px;
+  }
+  /* keep mobile clean — the hamburger already exposes the maroon menu */
+  body.red-theme header .tjmg-navybar {
+    display: none;
+  }
 }
 
 /* ---- Footer --------------------------------------------------------------- */
