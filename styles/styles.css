@@ -2782,7 +2782,9 @@ body.red-theme main .cards > ul > li:has(.cards-card-body > p:first-child) .card
    .hero picture is position:absolute z-index:-1, so the ::before overlay sits
    above the photo; content is lifted to z-index:1. */
 body.red-theme main .section.whc-banner .hero {
-  justify-content: flex-start;
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
 }
 body.red-theme main .section.whc-banner .hero::before {
   content: "";
@@ -2792,9 +2794,19 @@ body.red-theme main .section.whc-banner .hero::before {
   background: linear-gradient(90deg, rgba(0, 18, 60, .86) 0%, rgba(0, 18, 60, .55) 45%, rgba(0, 18, 60, .12) 100%);
   pointer-events: none;
 }
-body.red-theme main .section.whc-banner .hero > *:not(picture) {
+/* Frame ONLY the text block to the 1200 content grid; the <picture> is
+   absolutely positioned relative to .hero and must NOT have a positioned
+   ancestor div (that collapses the image), so we lift the text container,
+   never the image container. */
+body.red-theme main .section.whc-banner .hero > div:has(h1),
+body.red-theme main .section.whc-banner .hero > div:has(h2) {
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
 }
 body.red-theme main .section.whc-banner .hero h1,
 body.red-theme main .section.whc-banner .hero h2,
@@ -2810,6 +2822,57 @@ body.red-theme main .section.whc-banner .hero p {
 body.red-theme main .section.whc-banner .hero h1::after {
   background-color: var(--brand-maroon);
   margin-left: 0;
+}
+
+/* ---- News grid (whc-plans) — balanced auto-fit so 3 OR 4 cards look even,
+   with slightly tighter news-card typography. Scoped so comunicados/serviços
+   card blocks are untouched. */
+body.red-theme main .section.whc-plans .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+body.red-theme main .section.whc-plans .cards .cards-card-body h2,
+body.red-theme main .section.whc-plans .cards .cards-card-body h3,
+body.red-theme main .section.whc-plans .cards .cards-card-body h4 {
+  font-size: 16px;
+  line-height: 1.3;
+}
+body.red-theme main .section.whc-plans .cards .cards-card-body p {
+  font-size: 13.5px;
+}
+body.red-theme main .section.whc-plans .cards .cards-card-image img {
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* ---- whc-colcards heroes (image-left / image-right) — framed white card:
+   rounded corners, soft shadow (not the harsh default), never full-bleed. */
+body.red-theme main .section.whc-colcards .hero {
+  min-height: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0, 18, 60, .07);
+}
+body.red-theme main .section.whc-colcards .hero::before {
+  content: none;
+}
+body.red-theme main .section.whc-colcards .hero h1,
+body.red-theme main .section.whc-colcards .hero h2,
+body.red-theme main .section.whc-colcards .hero h3 {
+  color: var(--brand-navy);
+}
+body.red-theme main .section.whc-colcards .hero h1::after,
+body.red-theme main .section.whc-colcards .hero h2::after,
+body.red-theme main .section.whc-colcards .hero h3::after {
+  display: none;
+}
+body.red-theme main .section.whc-colcards .hero p {
+  color: var(--brand-slate);
 }
 
 /* ==========================================================================
@@ -2828,10 +2891,10 @@ body.red-theme header .tjmg-utilbar {
   background: var(--brand-maroon-dark);
 }
 body.red-theme header .tjmg-utilbar .tjmg-bar-inner {
-  max-width: 1264px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px;
-  height: 34px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -2858,24 +2921,27 @@ body.red-theme header .tjmg-navybar {
   background: var(--brand-navy);
 }
 body.red-theme header .tjmg-navybar .tjmg-bar-inner {
-  max-width: 1264px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 32px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
 }
 body.red-theme header .tjmg-navybar a {
   color: #fff;
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: .05em;
+  letter-spacing: .04em;
   text-transform: uppercase;
-  padding: 14px 22px;
+  padding: 11px 20px;
   border-left: 1px solid rgba(255, 255, 255, .08);
   white-space: nowrap;
 }
+/* first link aligns flush with the content grid */
 body.red-theme header .tjmg-navybar a:first-child {
   border-left: 0;
+  padding-left: 0;
 }
 body.red-theme header .tjmg-navybar a::after {
   content: none;
@@ -2884,6 +2950,43 @@ body.red-theme header .tjmg-navybar a:hover {
   background: var(--brand-navy-2);
   color: #fff;
   text-decoration: none;
+}
+
+/* Maroon header (bar 2): the text menu moves to the navy bar, so hide it on
+   desktop; the maroon row shows logo (left) + social icons (right). */
+@media (width >= 900px) {
+  body.red-theme header nav .nav-sections {
+    display: none !important;
+  }
+}
+body.red-theme header nav .tjmg-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+body.red-theme header nav .tjmg-social a {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .18s ease;
+}
+body.red-theme header nav .tjmg-social a:hover {
+  background: rgba(255, 255, 255, .28);
+  text-decoration: none;
+}
+body.red-theme header nav .tjmg-social a::after {
+  content: none;
+}
+body.red-theme header nav .tjmg-social svg {
+  width: 16px;
+  height: 16px;
+  fill: currentcolor;
 }
 
 @media (width < 900px) {
@@ -2897,6 +3000,9 @@ body.red-theme header .tjmg-navybar a:hover {
   }
   /* keep mobile clean — the hamburger already exposes the maroon menu */
   body.red-theme header .tjmg-navybar {
+    display: none;
+  }
+  body.red-theme header nav .tjmg-social {
     display: none;
   }
 }
